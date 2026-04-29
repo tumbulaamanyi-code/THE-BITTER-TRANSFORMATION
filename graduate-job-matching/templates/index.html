@@ -1,0 +1,121 @@
+{% extends 'base.html' %}
+
+{% block title %}Home - Graduate Job Matching System{% endblock %}
+
+{% block content %}
+<div class="hero-section">
+    <div class="container">
+        <div class="row align-items-center">
+            <div class="col-lg-6">
+                <h1 class="display-4 fw-bold mb-4">Find Your Perfect Job Match</h1>
+                <p class="lead mb-4">Connect fresh graduates with employers using intelligent skill-based matching</p>
+                {% if not current_user.is_authenticated %}
+                    <a href="{{ url_for('register') }}" class="btn btn-light btn-lg me-2">
+                        <i class="bi bi-person-plus"></i> Get Started
+                    </a>
+                    <a href="{{ url_for('login') }}" class="btn btn-outline-light btn-lg">
+                        <i class="bi bi-box-arrow-in-right"></i> Sign In
+                    </a>
+                {% endif %}
+            </div>
+            <div class="col-lg-6">
+                <svg class="img-fluid" viewBox="0 0 400 400" xmlns="http://www.w3.org/2000/svg">
+                    <rect width="400" height="400" fill="transparent"/>
+                    <circle cx="200" cy="100" r="60" fill="white" opacity="0.9"/>
+                    <rect x="150" y="200" width="100" height="120" rx="10" fill="white" opacity="0.9"/>
+                    <circle cx="80" cy="250" r="40" fill="white" opacity="0.7"/>
+                    <circle cx="320" cy="280" r="40" fill="white" opacity="0.7"/>
+                </svg>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="container py-5">
+    <div class="row mb-5">
+        <div class="col-md-4">
+            <div class="stats-card">
+                <h3>{{ job_count }}</h3>
+                <p>Active Job Listings</p>
+            </div>
+        </div>
+        <div class="col-md-4">
+            <div class="stats-card">
+                <h3>{{ graduate_count }}</h3>
+                <p>Registered Graduates</p>
+            </div>
+        </div>
+        <div class="col-md-4">
+            <div class="stats-card">
+                <h3>{{ match_count }}</h3>
+                <p>Successful Matches</p>
+            </div>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-lg-4 mb-4">
+            <div class="card">
+                <div class="card-body text-center">
+                    <i class="bi bi-mortarboard" style="font-size: 3rem; color: var(--primary-color);"></i>
+                    <h5 class="card-title mt-3">For Graduates</h5>
+                    <p class="card-text">Find jobs tailored to your skills. Take skill assessments and get matched with opportunities.</p>
+                    {% if not current_user.is_authenticated %}
+                        <a href="{{ url_for('register') }}?role=graduate" class="btn btn-primary">Register as Graduate</a>
+                    {% endif %}
+                </div>
+            </div>
+        </div>
+        <div class="col-lg-4 mb-4">
+            <div class="card">
+                <div class="card-body text-center">
+                    <i class="bi bi-building" style="font-size: 3rem; color: var(--primary-color);"></i>
+                    <h5 class="card-title mt-3">For Employers</h5>
+                    <p class="card-text">Post jobs and find the perfect candidates using our intelligent matching engine.</p>
+                    {% if not current_user.is_authenticated %}
+                        <a href="{{ url_for('register') }}?role=employer" class="btn btn-primary">Register as Employer</a>
+                    {% endif %}
+                </div>
+            </div>
+        </div>
+        <div class="col-lg-4 mb-4">
+            <div class="card">
+                <div class="card-body text-center">
+                    <i class="bi bi-shield-check" style="font-size: 3rem; color: var(--primary-color);"></i>
+                    <h5 class="card-title mt-3">How It Works</h5>
+                    <p class="card-text">Our AI-powered system analyzes skills and requirements to create perfect job matches.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="row mt-5 pt-5 border-top">
+        <div class="col-lg-6 mb-4">
+            <h3 class="mb-4">Why Choose Us?</h3>
+            <div class="mb-3">
+                <h6 class="mb-2"><i class="bi bi-check-circle-fill text-success"></i> Intelligent Matching</h6>
+                <p>Advanced algorithm matches graduates with jobs based on skills, location, and education.</p>
+            </div>
+            <div class="mb-3">
+                <h6 class="mb-2"><i class="bi bi-check-circle-fill text-success"></i> Skill Assessments</h6>
+                <p>Validate your skills with our comprehensive assessment system.</p>
+            </div>
+            <div class="mb-3">
+                <h6 class="mb-2"><i class="bi bi-check-circle-fill text-success"></i> Real-time Notifications</h6>
+                <p>Get instant updates about job matches and application status.</p>
+            </div>
+        </div>
+        <div class="col-lg-6">
+            <h3 class="mb-4">Getting Started</h3>
+            <ol class="list-group list-group-numbered">
+                <li class="list-group-item">Create your account</li>
+                <li class="list-group-item">Complete your profile</li>
+                <li class="list-group-item">Add your skills</li>
+                <li class="list-group-item">Take skill assessments</li>
+                <li class="list-group-item">Browse and apply for jobs</li>
+                <li class="list-group-item">Get matched with opportunities</li>
+            </ol>
+        </div>
+    </div>
+</div>
+{% endblock %}
